@@ -2,17 +2,14 @@ on:
   workflow_dispatch:
   workflow_call:
     inputs:
-      # pass in environment through manual trigger, if not passed in, default to 'dev'
       env:
         required: true
         type: string
         default: 'prod'
-      # working-directory is added to accommodate monorepo.  For multi repo, defaults to '.', current directory
       working-directory:
         required: false
         type: string
         default: '.'
-      # image tag
       image-tag:
         required: true
         type: string
@@ -21,10 +18,8 @@ name: cd
 jobs:
   auth:
     permissions:
-      id-token: write # need this for OIDC
+      id-token: write
     uses: ./.github/workflows/auth.yml
-#    with:
-#      env: dev
     secrets: inherit
 
   deploy:
@@ -33,4 +28,4 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
       - name: Echo
-        run: echo "CD..."
+        run: echo "CD... image-tag ${{ inputs.image-tag }}"

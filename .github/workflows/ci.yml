@@ -2,7 +2,6 @@ on:
   workflow_dispatch:
   workflow_call:
     inputs:
-      # pass in environment through manual trigger, if not passed in, default to 'dev'
       env:
         required: true
         type: string
@@ -17,10 +16,8 @@ jobs:
 
   auth:
     permissions:
-      id-token: write # need this for OIDC
+      id-token: write
     uses: ./.github/workflows/auth.yml
-#    with:
-#      env: dev
     secrets: inherit
 
   build-and-test:

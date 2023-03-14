@@ -2,7 +2,7 @@ on:
   workflow_dispatch:
   workflow_call:
 
-name: Auth
+name: auth
 
 jobs:
   auth:
