@@ -15,6 +15,14 @@ name: ci
 
 jobs:
 
+  auth:
+    permissions:
+      id-token: write # need this for OIDC
+    uses: ./.github/workflows/auth.yml
+    with:
+      env: dev
+    secrets: inherit
+
   build-and-test:
     name: Build & Test
     runs-on: ubuntu-latest

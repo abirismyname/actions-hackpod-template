@@ -19,8 +19,15 @@ on:
 name: cd
 
 jobs:
+  auth:
+    permissions:
+      id-token: write # need this for OIDC
+    uses: ./.github/workflows/auth.yml
+    with:
+      env: dev
+    secrets: inherit
+
   deploy:
-    name: Deploy to AWS ECS Fargate
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
