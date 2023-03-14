@@ -23,8 +23,8 @@ jobs:
     permissions:
       id-token: write # need this for OIDC
     uses: ./.github/workflows/auth.yml
-    with:
-      env: dev
+#    with:
+#      env: dev
     secrets: inherit
 
   deploy:
