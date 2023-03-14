@@ -1,0 +1,12 @@
+on:
+  workflow_dispatch:
+  workflow_call:
+
+name: Auth
+
+jobs:
+  auth:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Echo
+      run: echo "Authenticating..."

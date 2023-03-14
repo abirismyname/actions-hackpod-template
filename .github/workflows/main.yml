@@ -1,0 +1,30 @@
+on:
+  workflow_dispatch:
+
+name: Main
+
+permissions:
+  contents: read
+  
+jobs:
+
+  build-and-test:
+    permissions:
+      id-token: write # need this for OIDC
+      contents: read
+    uses: ./.github/workflows/ci.yml
+    with:
+      env: dev
+    secrets: inherit
+
+  deploy-to-prod:
+    name: Deploy to Prod
+    needs: [build-and-test]
+    permissions:
+      id-token: write # need this for OIDC
+      contents: read
+    uses: ./.github/workflows/cd.yml
+    with:
+      env: prod
+      image-tag: ${{ needs.build-and-test.outputs.image-tag }}
+    secrets: inherit

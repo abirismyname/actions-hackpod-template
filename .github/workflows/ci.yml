@@ -1,0 +1,24 @@
+on:
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      # pass in environment through manual trigger, if not passed in, default to 'dev'
+      env:
+        required: true
+        type: string
+        default: 'dev'
+    outputs:
+      image-tag: ${{ steps.set-image-tag.outputs.IMAGE_TAG }}
+name: ci
+
+jobs:
+  build-and-test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: auth
+        uses: ./.github/workflows/auth.yml
+      - name: Echo
+        run: echo "CD..."    
