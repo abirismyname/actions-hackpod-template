@@ -8,17 +8,28 @@ on:
         type: string
         default: 'dev'
     outputs:
-      image-tag: ${{ steps.set-image-tag.outputs.IMAGE_TAG }}
+      image-tag:
+        description: "image tag"
+        value: ${{ jobs.build-and-test.outputs.image-tag }}
 name: ci
 
 jobs:
+
   build-and-test:
     name: Build & Test
     runs-on: ubuntu-latest
+
+    outputs:
+      image-tag: ${{ steps.set-image-tag.outputs.IMAGE_TAG }}
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
       - name: auth
         uses: ./.github/workflows/auth.yml
       - name: Echo
-        run: echo "CD..."    
+        run: echo "CI..."    
+      - name: Set image tag output
+        id: set-image-tag
+        run: |
+          echo "IMAGE_TAG=$1.0.0" >> $GITHUB_OUTPUT

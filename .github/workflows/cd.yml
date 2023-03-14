@@ -28,4 +28,4 @@ jobs:
       - name: auth
         uses: ./.github/workflows/auth.yml
       - name: Echo
-        run: echo "CI..."
+        run: echo "CD..."
