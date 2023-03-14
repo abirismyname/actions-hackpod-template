@@ -32,7 +32,5 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-      - name: auth
-        uses: ./.github/workflows/auth.yml
       - name: Echo
         run: echo "CD..."
