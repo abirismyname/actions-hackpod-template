@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
 
-name: main
+name: build-and-deploy
 
 permissions:
   contents: read
