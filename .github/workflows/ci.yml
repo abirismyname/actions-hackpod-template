@@ -9,12 +9,6 @@ name: ci
 
 jobs:
 
-  auth:
-    permissions:
-      id-token: write
-    uses: ./.github/workflows/auth.yml
-    secrets: inherit
-
   build-and-test:
     runs-on: ubuntu-latest
 
@@ -24,6 +18,12 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
+#      Auth example
+#      - name: Configure AWS credentials
+#        uses: aws-actions/configure-aws-credentials@v2
+#        with:
+#          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+#          aws-region: ${{ secrets.AWS_REGION }}        
       - name: Echo
         run: echo "CI..."    
       - name: Set image tag output
