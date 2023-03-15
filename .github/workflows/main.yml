@@ -13,8 +13,6 @@ jobs:
       id-token: write # need this for OIDC
       contents: read
     uses: ./.github/workflows/ci.yml
-    with:
-      env: dev
     secrets: inherit
 
   deploy-to-prod:
@@ -24,6 +22,5 @@ jobs:
       contents: read
     uses: ./.github/workflows/cd.yml
     with:
-      env: prod
       image-tag: ${{ needs.build-and-test.outputs.image-tag }}
     secrets: inherit

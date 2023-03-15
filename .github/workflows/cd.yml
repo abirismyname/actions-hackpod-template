@@ -2,10 +2,6 @@ on:
   workflow_dispatch:
   workflow_call:
     inputs:
-      env:
-        required: true
-        type: string
-        default: 'prod'
       working-directory:
         required: false
         type: string
