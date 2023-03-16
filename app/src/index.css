@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .bg-card-blur {
+    @apply w-full h-full bg-cover bg-center blur-sm rounded-2xl;
+  }
+
+  .card-size {
+    @apply w-[90%] md:w-[91%] lg:w-[92%] xl:w-[93%] 2xl:w-[96%] h-5/6;
+  }
+
+  .card-center {
+    @apply top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+
+  .bg-card {
+    @apply card-size card-center bg-cover bg-center absolute flex flex-col justify-center items-center drop-shadow-xl rounded-2xl;
+  }
+
+  .bg-dark {
+    @apply bg-['#020419'];
+  }
+
+  .bg-light {
+    @apply bg-['#e0e5ec'];
+  }
+}
+
+html {
+  font-family: 'Source Sans Pro', sans-serif;
+}
