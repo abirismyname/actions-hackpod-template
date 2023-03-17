@@ -21,6 +21,10 @@ jobs:
     # only execute if PR is merged or manual trigger, or not raised by dependabot
 
     steps:
+      - name: Echo
+        run: |
+          echo "CD... image-tag ${{ inputs.image-tag }}"
+          echo "CD... image ${{ inputs.image }}"
       - name: Checkout Code
         uses: actions/checkout@v3
 #      Auth example
@@ -29,15 +33,9 @@ jobs:
         with:
           role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
           aws-region: ${{ secrets.AWS_REGION }}        
-      - name: Echo
-        run: |
-          echo "CD... image-tag ${{ inputs.image-tag }}"
-          echo "CD... image ${{ inputs.image }}"
-
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
-
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
