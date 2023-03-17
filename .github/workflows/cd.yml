@@ -9,9 +9,6 @@ on:
       image-tag:
         required: true
         type: string
-      image:
-        required: true
-        type: string        
 name: cd
 
 jobs:
@@ -21,10 +18,6 @@ jobs:
     # only execute if PR is merged or manual trigger, or not raised by dependabot
 
     steps:
-      - name: Echo
-        run: |
-          echo "CD... image-tag ${{ inputs.image-tag }}"
-          echo "CD... image ${{ inputs.image }}"
       - name: Checkout Code
         uses: actions/checkout@v3
 #      Auth example
@@ -36,13 +29,17 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
+      - name: Echo
+        run: |
+          echo "CD... image-tag ${{ inputs.image-tag }}"
+          echo "CD... image ${{ steps.login-ecr.outputs.registry }}/weather-app:${{ inputs.image-tag }}"
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
           container-name: weather-app
-          image: ${{ inputs.image }}
+          image: "${{ steps.login-ecr.outputs.registry }}/weather-app:${{ inputs.image-tag }}"
 
       - name: Echo task definition
         run: |
