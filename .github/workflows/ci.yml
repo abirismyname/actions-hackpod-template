@@ -34,7 +34,7 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
-        
+
       - name: Build, tag, and push image to AWS ECR
         id: build-image
         env:
@@ -45,8 +45,7 @@ jobs:
         run: |
           echo "Building image $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
           cd app
-          docker build \
-            -t $ECR_REPOSITORY:$IMAGE_TAG \
-            -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 987508290655.dkr.ecr.us-east-1.amazonaws.com
+          docker build -t weather-app .
+          docker tag weather-app:latest 987508290655.dkr.ecr.us-east-1.amazonaws.com/weather-app:latest
+          docker push 987508290655.dkr.ecr.us-east-1.amazonaws.com/weather-app:latest
