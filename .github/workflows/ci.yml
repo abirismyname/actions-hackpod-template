@@ -61,4 +61,5 @@ jobs:
         env:
           IMAGE: ${{ steps.build-image.outputs.image }}       
         run: |
+          echo "$IMAGE"
           echo "IMAGE=$IMAGE" >> $GITHUB_OUTPUT          
