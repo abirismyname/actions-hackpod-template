@@ -17,7 +17,7 @@ jobs:
 
     outputs:
       image-tag: ${{ steps.set-image-tag.outputs.IMAGE_TAG }}
-
+      image: ${{ steps.set-image.outputs.IMAGE }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
