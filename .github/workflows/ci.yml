@@ -26,29 +26,27 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}         
       - name: Set image tag output
         id: set-image-tag
+        env:
+          IMAGE_TAG: ${{ github.sha }}        
         run: |
-          echo "IMAGE_TAG=$(git rev-parse --short HEAD)-$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_OUTPUT
+          echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_OUTPUT
       # Add steps here like linting, testing, minification, etc.
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
+        
       - name: Build, tag, and push image to AWS ECR
         id: build-image
         env:
           AWS_REGION: ${{ secrets.AWS_REGION }}
-          ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
-          ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}
-          IMAGE_TAG: ${{ steps.set-image-tag.outputs.IMAGE_TAG }}
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: weather-app
+          IMAGE_TAG: ${{ github.sha }}          
         run: |
           echo "Building image $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
           cd app
-          # Build a docker container and push it to ECR so that it can be deployed to ECS.
-          aws ecr get-login-password --region $AWS_REGION | docker login -u AWS --password-stdin $ECR_REGISTRY
           docker build \
             -t $ECR_REPOSITORY:$IMAGE_TAG \
             -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          docker tag weather-app:latest 987508290655.dkr.ecr.us-east-1.amazonaws.com/weather-app:latest
-          echo "Pushing image $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
-          echo "Docker push finished"
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
