@@ -5,6 +5,9 @@ on:
       image-tag:
         description: "image tag"
         value: ${{ jobs.build-and-test.outputs.image-tag }}
+      image:
+        description: "image"
+        value: ${{ jobs.build-and-test.outputs.image }}        
 name: ci
 
 jobs:
@@ -46,6 +49,8 @@ jobs:
           echo "Building image $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
           cd app
           docker build \
+              -t $ECR_REPOSITORY:latest \
+              -t $ECR_REGISTRY/$ECR_REPOSITORY:latest \
               -t $ECR_REPOSITORY:$IMAGE_TAG \
               -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
