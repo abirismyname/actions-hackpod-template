@@ -19,7 +19,6 @@ jobs:
     runs-on: ubuntu-latest
 
     # only execute if PR is merged or manual trigger, or not raised by dependabot
-    if: (github.event.pull_request.merged || github.event.workflow_call || github.event.workflow_dispatch) && github.actor != 'dependabot[bot]'
 
     steps:
       - name: Checkout Code
