@@ -23,5 +23,5 @@ jobs:
     uses: ./.github/workflows/cd.yml
     with:
       image-tag: ${{ needs.build-and-test.outputs.image-tag }}
-      image: ${{ needs.build-and-test.outputs.image }}      
+      image:     ${{ needs.build-and-test.outputs.image }}      
     secrets: inherit

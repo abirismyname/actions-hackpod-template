@@ -17,7 +17,7 @@ jobs:
 
     outputs:
       image-tag: ${{ steps.set-image-tag.outputs.IMAGE_TAG }}
-      image: ${{ steps.set-image.outputs.IMAGE }}
+      image:     ${{ steps.set-image.outputs.IMAGE }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -27,12 +27,7 @@ jobs:
         with:
           role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
           aws-region: ${{ secrets.AWS_REGION }}         
-      - name: Set image tag output
-        id: set-image-tag
-        env:
-          IMAGE_TAG: ${{ github.sha }}        
-        run: |
-          echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_OUTPUT
+
       # Add steps here like linting, testing, minification, etc.
       - name: Login to Amazon ECR
         id: login-ecr
@@ -53,13 +48,20 @@ jobs:
               -t $ECR_REGISTRY/$ECR_REPOSITORY:latest \
               -t $ECR_REPOSITORY:$IMAGE_TAG \
               -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG          
           echo "Pushed image $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+      - name: Set image tag output
+        id: set-image-tag
+        env:
+          IMAGE_TAG: ${{ github.sha }}        
+        run: |
+          echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_OUTPUT
       - name: Set image output
         id: set-image
         env:
-          IMAGE: ${{ steps.build-image.outputs.image }}       
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: weather-app
+          IMAGE_TAG: ${{ github.sha }}         
         run: |
-          echo "$IMAGE"
-          echo "IMAGE=$IMAGE" >> $GITHUB_OUTPUT          
+          echo "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          echo "IMAGE=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT          
