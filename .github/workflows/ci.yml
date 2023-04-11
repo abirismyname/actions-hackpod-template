@@ -18,15 +18,31 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-#      Auth example
-#      - name: Configure AWS credentials
-#        uses: aws-actions/configure-aws-credentials@v2
-#        with:
-#          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
-#          aws-region: ${{ secrets.AWS_REGION }}        
+
       - name: Echo
-        run: echo "CI..."    
+        run: echo "CI..."  
+
       - name: Set image tag output
         id: set-image-tag
         run: |
           echo "IMAGE_TAG=1.0.0" >> $GITHUB_OUTPUT
+
+      # TODO:
+      # Configure dynamic credentials to AWS, check out the action: aws-actions/configure-aws-credentials
+
+      # Lint the CloudFormation template (templates/), check out the action: scottbrenner/cfn-lint-action
+      # Perform static analysis against the CloudFormation template, check out the action: stelligent/cfn_nag@master
+
+      # Checkout Amplify Repo (we do this so that you can start to build the Amplify app from this repo)
+      - name: Checkout Amplify Repo
+        run: |
+          cd $GITHUB_WORKSPACE
+          git clone https://github.com/ProgramEquity/amplify app
+          cp $GITHUB_WORKSPACE/Dockerfile $GITHUB_WORKSPACE/app
+          ls -l $GITHUB_WORKSPACE/app
+
+      # Build the Amplify app and create a docker image, relevant actions: aws-actions/amazon-ecr-login@v1
+
+      # Scan the docker image in ECR, check out the action: alexjurkiewicz/ecr-scan-image for inspiration
+     
+      # Create build summary output
