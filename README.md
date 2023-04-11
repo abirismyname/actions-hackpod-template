@@ -1,8 +1,21 @@
 # Hack Pod April 19 2023
 
+## Introduction
+
+Lets go build! You are tasked to create a new architecture in AWS with GitHub Actions, designed as turn-key solution to accelerate cloud adoption. We will use AWS services such as [Amazon ECS](https://aws.amazon.com/ecs/) and [Amazon ECR](https://aws.amazon.com/ecr/). we will also use [AWS CloudFormation](https://aws.amazon.com/cloudformation/) as the infrastructure as code tool. 
+
+The solution should embrace security and agility in the software development lifecycle. Here are the features / quality that we want to include in the solution:
+
+* Secure credentials, no hard-coded secrets, use dynamic credentials, time-bound, temporary.
+* Infrastructure as code (IaaC) to speed up deployment.
+* Linting, policy validation and security best practice checks for IaaC
+* Container image scans
+* Automated deployment
+* Detective and proactive guardrails
+
 ## Join the Event Engine
 
-To deploy this sample application on AWS, you first need an AWS account. For this purpose, we will use AWS provided Event Engine.
+First you need an AWS account. For this purpose, we will use AWS provided Event Engine.
 
 * Go to: https://dashboard.eventengine.run/login
 * Use the **team-hash** provided by the mentor
@@ -85,15 +98,7 @@ Vars:
 
 ## Next step
 
-Lets go build! You are tasked to create a new architecture in AWS with GitHub Actions, designed as turn-key solution to accelerate cloud adoption. 
-
-The solution should embrace security and agility in software development. Here are the features / quality that we look on the solution:
-
-* Secure credentials, no hard-coded secrets, use dynamic credentials, time-bound, temporary.
-* Infrastructure as code (IaaC) to speed up deployment.
-* Linting, policy validation and security best practice checks for IaaC
-* Container image scans
-* Automated deployment
-* Detective and proactive guardrails
-
-Check out the existing GitHub workflows files for inspiration.
+Here are a couple pointer on the next steps:
+1. We created a starter kit AWS CloudFormation template for the [ECS cluster](templates/cluster.yaml). You can use it to deploy the supporting ECS infrastructure.
+2. Check out the existing [GitHub workflows files](templates/) for inspiration.
+3. Split into team and start coding!
