@@ -33,11 +33,22 @@ First you need an AWS account. For this purpose, we will use AWS provided Event 
 
 Now you have your CodeSpaces / IDE linked with the temporary AWS account that you will use to deploy your application. 
 
-## Fork the repo
+## Getting Started.
 
-Nominate someone on your team as the maintainer to fork this repository: https://github.com/abirismyname/reusable-example. The maintainer can add the remaing team access to the forked repository for collaborations.
+Nominate someone on your team as the maintainer: The maintainer can add the remaining team access to the forked repository for collaborations. The maintainer will then follow these instructions...
+
+1. The maintainer will go here:
+[https://github.com/abirismyname/actions-hackpod-template](https://github.com/abirismyname/actions-hackpod-template).
+2. Click "Use This Template" and then "Create a new repository". We recommend creating it as a private repo first, and you can change it later.
+3. Once created, go to the Repo Settings and click on "Collaborators".
+4. Add your teammates
 
 ## Bootstrap 
+
+Next, someone on the team will be responsible for bootstrapping up the AWS environment. The following steps will create a CloudFormation Stack containing:
+a. A new IAM OIDC provider and role
+b. A new ECR Repository
+c. A new VPCStack
 
 **IMPORTANT**: Only one person on the team need to perform the bootstrap.
 
@@ -98,7 +109,7 @@ Example output
 }
 ```
 
-Configure GitHub vars and secrets as follow:
+Configure GitHub vars and secrets as follows:
 
 Secrets: 
 * `ROLE_TO_ASSUME` = the output value of `RoleGithubActionsARN` from CloudFormation output
@@ -115,4 +126,4 @@ Vars:
 Here are a couple pointer on the next steps:
 1. We created a starter kit AWS CloudFormation template for the [ECS cluster](templates/cluster.yaml). You can use it to deploy the supporting ECS infrastructure.
 2. Check out the existing [GitHub workflows files](.github/workflows) for inspiration.
-3. Split into team and start coding!
+3. Split into teams and start coding!
