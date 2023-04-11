@@ -13,19 +13,33 @@ The solution should embrace security and agility in the software development lif
 * Automated deployment
 * Detective and proactive guardrails
 
+## Find your team
+
+The activities should be done as part of a team. The facilitator should have formed a team for you, if not, feel free to form your own team.
+
+We will provide each team with an **Event engine Team Hash**, you will use it to gain access to AWS account as part of this hackpod. 
+
 ## Join the Event Engine
 
-First you need an AWS account. For this purpose, we will use AWS provided Event Engine.
+First you need an AWS account. For this purpose, we will use AWS provided Event Engine. This account will run for 72 hours before it will self-destruct. 
+
+**IMPORTANT**: Do not use the account to store any personal / important data, remember your access are limited to 72 hours.
 
 * Go to: https://dashboard.eventengine.run/login
-* Use the **team-hash** provided by the mentor
+* Use the **Event Engine Team Hash** provided by the mentor
 * Login using your email address
 * Use the **AWS Console** link to login to the AWS
-* Use the provided environment variables for AWS credentials and copy-paste it to your CodeSpaces
+* Use the provided environment variables for AWS credentials and copy-paste it to your CodeSpaces / IDE
 
-Now you have your CodeSpaces linked with the temporary AWS account that you will use to deploy your application. 
+Now you have your CodeSpaces / IDE linked with the temporary AWS account that you will use to deploy your application. 
+
+## Fork the repo
+
+Nominate someone on your team as the maintainer to fork this repository: https://github.com/abirismyname/reusable-example. The maintainer can add the remaing team access to the forked repository for collaborations.
 
 ## Bootstrap 
+
+**IMPORTANT**: Only one person on the team need to perform the bootstrap.
 
 **Prerequisites**:
 
