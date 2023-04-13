@@ -123,7 +123,7 @@ Vars:
 
 ## Next step
 
-Here are a couple pointer on the next steps:
+Here are a couple pointers on the next steps:
 1. We created a starter kit AWS CloudFormation template for the [ECS cluster](templates/cluster.yaml). You can use it to deploy the supporting ECS infrastructure.
 2. Check out the existing [GitHub workflows files](.github/workflows) for inspiration.
 3. Split into teams and start coding!
