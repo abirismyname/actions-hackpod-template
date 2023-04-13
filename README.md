@@ -46,9 +46,9 @@ Nominate someone on your team as the maintainer: The maintainer can add the rema
 ## Bootstrap 
 
 Next, someone on the team will be responsible for bootstrapping up the AWS environment. The following steps will create a CloudFormation Stack containing:  
-a. A new IAM OIDC provider and role. 
-b. A new ECR Repository. 
-c. A new VPCStack
+- A new IAM OIDC provider and role
+- A new ECR Repository
+- A new VPCStack
 
 **IMPORTANT**: Only one person on the team need to perform the bootstrap.
 
