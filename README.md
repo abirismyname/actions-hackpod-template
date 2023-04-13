@@ -39,15 +39,15 @@ Nominate someone on your team as the maintainer: The maintainer can add the rema
 
 1. The maintainer will go here:
 [https://github.com/abirismyname/actions-hackpod-template](https://github.com/abirismyname/actions-hackpod-template).
-2. Click "Use This Template" and then "Create a new repository". We recommend creating it as a private repo first, and you can change it later.
+2. Click "Use This Template" and then "Create a new repository". We recommend creating it as a public repo.
 3. Once created, go to the Repo Settings and click on "Collaborators".
 4. Add your teammates
 
 ## Bootstrap 
 
-Next, someone on the team will be responsible for bootstrapping up the AWS environment. The following steps will create a CloudFormation Stack containing:
-a. A new IAM OIDC provider and role
-b. A new ECR Repository
+Next, someone on the team will be responsible for bootstrapping up the AWS environment. The following steps will create a CloudFormation Stack containing:  
+a. A new IAM OIDC provider and role. 
+b. A new ECR Repository. 
 c. A new VPCStack
 
 **IMPORTANT**: Only one person on the team need to perform the bootstrap.
