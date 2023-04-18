@@ -130,3 +130,44 @@ Here are a couple pointers on the next steps:
 1. We created a starter kit AWS CloudFormation template for the [ECS cluster](templates/cluster.yaml). You can use it to deploy the supporting ECS infrastructure.
 2. Check out the existing [GitHub workflows files](.github/workflows) the different steps you need to perform in the comments.
 3. Split into teams and start coding!
+
+## Instructions by group
+These tasks are meant to be done sequentially. Group 1 needs to finish before Groups 2 and 3 can get started. Groups 2 and 3 can be work in parallel.
+### Group 1 Core
+- [] Pick a team member who will be the “maintainer”
+- [] [Create Repo from Template](https://github.com/abirismyname/actions-hackpod-template#getting-started)
+- [] Add teammates to repo
+- [] [Bootstrap AWS Environment](https://github.com/abirismyname/actions-hackpod-template#bootstrap)
+- [] Add remaining Secrets and Variables
+- [] Validate configuration
+- [] Review and merge PR’s
+Bonus Points
+- [] Add branch protection rules
+
+### Group 2 CI
+- [] Configure AWS using OIDC, check out the action: aws-actions/configure-aws-credentials
+- [] Checkout Amplify Repo (we do this so that you can start to build the Amplify app from this repo)
+- [] Build the Amplify app
+- [] Create a docker image
+- [] Upload to ECR
+Bonus Points
+- [] Lint the CloudFormation template (templates/), check out the action: scottbrenner/cfn-lint-action
+- [] Perform static analysis against the CloudFormation template, check out the action: stelligent/cfn_nag@master
+- [] Scan the docker image in ECR, check out the action: alexjurkiewicz/ecr-scan-image for inspiration
+- [] Create build summary output from scans
+
+### Group 3 CD
+- [] Configure AWS using OIDC, check out the action: check out the action: aws-actions/configure-aws-credentials
+- [] Deploy the ECS cluster using the pre-build template (templates/cluster), check this action for inspiration: aws-actions/aws-cloudformation-github-deploy
+- [] Update ECS task definition with the new image id / tag, check this action for idea: aws-actions/amazon-ecs-render-task-definition
+- [] Deploy the new ECS task based on the new ECS task definition, check this action for idea: aws-actions/amazon-ecs-deploy-task-definition
+- [] Get the Amplify app URL via ECS service elastic load balancer via AWS UI
+- [] Go to the URL in your browser (Should be something like [http://ampli-publi-1qwmkqsu76tvx-1285928569.us-east-1.elb.amazonaws.com/](http://ampli-publi-1qwmkqsu76tvx-1285928569.us-east-1.elb.amazonaws.com/))
+Bonus Points
+- [] Create summary output in GitHub Action that shows the URL
+- [] Deploy additional guardrails, such as [AWS Security Hub](https://aws.amazon.com/security-hub/) and the [conformance pack](https://docs.aws.amazon.com/config/latest/developerguide/conformancepack-sample-templates.html) 
+- [] Deploy web application firewalls and [AWS Managed rules](https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups.html)
+
+## Goal
+The goal is to get as much done in the 2 hours as possible. The AWS Credentials will be valid for 72 hours. If you're feeling stumbled and need some guidance ask your facilators and helpers. There is a completed example found here:
+https://github.com/abirismyname/amplify-ecs-fargate/
