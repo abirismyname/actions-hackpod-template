@@ -29,19 +29,28 @@ First you need an AWS account. For this purpose, we will use AWS provided Event 
 * Use the **Event Engine Team Hash** provided by the mentor
 * Login using your email address
 * Use the **AWS Console** link to login to the AWS
-* Use the provided environment variables for AWS credentials and copy-paste it to your CodeSpaces / IDE
+* Save the provided environment variables for AWS credentials. You will copy-paste it to your CodeSpace later.
 
-Now you have your CodeSpaces / IDE linked with the temporary AWS account that you will use to deploy your application. 
-
-## Getting Started.
+## Getting Started
 
 Nominate someone on your team as the maintainer: The maintainer can add the remaining team access to the forked repository for collaborations. The maintainer will then follow these instructions...
 
-1. The maintainer will go here:
+- The maintainer will go here:
 [https://github.com/abirismyname/actions-hackpod-template](https://github.com/abirismyname/actions-hackpod-template).
-2. Click "Use This Template" and then "Create a new repository". We recommend creating it as a public repo.
-3. Once created, go to the Repo Settings and click on "Collaborators".
-4. Add your teammates
+- Click "Use This Template" and then "Create a new repository". We recommend creating it as a public repo.
+- Once created, go to the Repo Settings and click on "Collaborators".
+- Add your teammates
+- Add your AWS Credentials to the Codespace:
+   - Create a folder `~/.aws/`. `~` represents the user's home folder.
+   - Create a file in `~/.aws/` called `credentials` (no file extension). Full path to file: `~/.aws/credentials`
+   - Set the contents of the `credentials` file like below. Substitute `<<AWS_ACCESS_KEY_ID>>`,`<<AWS_SECRET_ACCESS_KEY>>`,`<<AWS_SESSION_TOKEN>>` with the variables you receieved from the Event Engine instructions above for
+```ini 
+   [default]
+   aws_access_key_id = <<AWS_ACCESS_KEY_ID>>
+   aws_secret_access_key = <<AWS_SECRET_ACCESS_KEY>>
+   aws_session_token = <<AWS_SESSION_TOKEN>>
+   region = us-east-1   
+```
 
 ## Bootstrap 
 
@@ -51,12 +60,6 @@ Next, someone on the team will be responsible for bootstrapping up the AWS envir
 - A new VPCStack
 
 **IMPORTANT**: Only one person on the team need to perform the bootstrap.
-
-**Prerequisites**:
-
-* Install [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) 
-* Install [jq](https://stedolan.github.io/jq/download/)
-* AWS credentials configured in your AWS CLI or via environment variables.
 
 **How to bootstrap your environment**
 
@@ -125,5 +128,5 @@ Vars:
 
 Here are a couple pointers on the next steps:
 1. We created a starter kit AWS CloudFormation template for the [ECS cluster](templates/cluster.yaml). You can use it to deploy the supporting ECS infrastructure.
-2. Check out the existing [GitHub workflows files](.github/workflows) for inspiration.
+2. Check out the existing [GitHub workflows files](.github/workflows) the different steps you need to perform in the comments.
 3. Split into teams and start coding!
