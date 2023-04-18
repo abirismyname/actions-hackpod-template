@@ -23,9 +23,9 @@ By the end of the hackpod, we want you to:
 
 ## Find your group
 
-The activities should be done as part of a team. The facilitator should have formed a group for you, if not, feel free to form your own group.
+The activities should be done as part of a group. The facilitator should have formed a group for you, if not, feel free to form your own group.
 
-We will provide each team with an **Event engine Team Hash**, you will use it to gain access to AWS account as part of this hackpod. 
+We will provide an **Event engine Team Hash**, you will use it to gain access to AWS account as part of this hackpod. 
 
 ## Join the Event Engine
 
@@ -41,7 +41,7 @@ First you need an AWS account. For this purpose, we will use AWS provided Event 
 
 ## Getting Started
 
-Nominate someone on your team as the maintainer: The maintainer can add the remaining team access to the forked repository for collaborations. The maintainer will then follow these instructions...
+Nominate someone  as the maintainer: The maintainer can add the remaining people access to the forked repository for collaborations. The maintainer will then follow these instructions...
 
 - The maintainer will go here:
 [https://github.com/abirismyname/actions-hackpod-template](https://github.com/abirismyname/actions-hackpod-template).
@@ -62,12 +62,12 @@ Nominate someone on your team as the maintainer: The maintainer can add the rema
 
 ## Bootstrap 
 
-Next, someone on the team will be responsible for bootstrapping up the AWS environment. The following steps will create a CloudFormation Stack containing:  
+Next, someone will be responsible for bootstrapping up the AWS environment. The following steps will create a CloudFormation Stack containing:  
 - A new IAM OIDC provider and role
 - A new ECR Repository
 - A new VPCStack
 
-**IMPORTANT**: Only one person on the team need to perform the bootstrap.
+**IMPORTANT**: Only one personneed to perform the bootstrap.
 
 **How to bootstrap your environment**
 
@@ -137,7 +137,7 @@ Vars:
 Here are a couple pointers on the next steps:
 1. We created a starter kit AWS CloudFormation template for the [ECS cluster](templates/cluster.yaml). You can use it to deploy the supporting ECS infrastructure.
 2. Check out the existing [GitHub workflows files](.github/workflows) the different steps you need to perform in the comments.
-3. Split into teams and start coding!
+3. Start coding!
 
 ## Instructions by group
 These tasks are meant to be done sequentially. Group 1 needs to finish before Groups 2 and 3 can get started. Groups 2 and 3 can be work in parallel.
