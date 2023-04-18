@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Lets go build! You are tasked to create a new architecture in AWS with GitHub Actions, designed as turn-key solution to accelerate cloud adoption. We will use AWS services such as [Amazon ECS](https://aws.amazon.com/ecs/) and [Amazon ECR](https://aws.amazon.com/ecr/). we will also use [AWS CloudFormation](https://aws.amazon.com/cloudformation/) as the infrastructure as code tool. 
+Lets go build! You are tasked deploy a containerized version of [Program Equity Amplify app](https://github.com/ProgramEquity/amplify) in AWS with GitHub Actions, designed as turn-key solution to accelerate cloud adoption. We will use AWS services such as [Amazon ECS](https://aws.amazon.com/ecs/) and [Amazon ECR](https://aws.amazon.com/ecr/). we will also use [AWS CloudFormation](https://aws.amazon.com/cloudformation/) as the infrastructure as code tool. 
 
 The solution should embrace security and agility in the software development lifecycle. Here are the features / quality that we want to include in the solution:
 
@@ -13,9 +13,17 @@ The solution should embrace security and agility in the software development lif
 * Automated deployment
 * Detective and proactive guardrails
 
-## Find your team
+## Goals
+**The most important thing we want folks to walk away is exposure to GitHub Actions and AWS. We want you to learn.**
 
-The activities should be done as part of a team. The facilitator should have formed a team for you, if not, feel free to form your own team.
+By the end of the hackpod, we want you to:
+1. Use branches and commit your code. If you've unfinished work, that's ok! The repos themselves will stay around after the hackpod. The AWS Credentials that you will receive will be valid for 72 hours.
+2. Document your progress in the [Program Equity Amplify Repo Issues](https://github.com/ProgramEquity/amplify/issues).
+3. Fill out the survey.
+
+## Find your group
+
+The activities should be done as part of a team. The facilitator should have formed a group for you, if not, feel free to form your own group.
 
 We will provide each team with an **Event engine Team Hash**, you will use it to gain access to AWS account as part of this hackpod. 
 
@@ -167,8 +175,3 @@ Bonus Points
 - [ ] Create summary output in GitHub Action that shows the URL
 - [ ] Deploy additional guardrails, such as [AWS Security Hub](https://aws.amazon.com/security-hub/) and the [conformance pack](https://docs.aws.amazon.com/config/latest/developerguide/conformancepack-sample-templates.html) 
 - [ ] Deploy web application firewalls and [AWS Managed rules](https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups.html)
-
-## Goal
-The goal is to get as much done in the 2 hours as possible. The AWS Credentials will be valid for 72 hours. If you're feeling stumbled and need some guidance ask your facilators and helpers. There is a completed example found here:
-https://github.com/abirismyname/amplify-ecs-fargate/
-Document your progress in the [Program Equity Amplify Repo Issues](https://github.com/ProgramEquity/amplify/issues)
