@@ -19,7 +19,7 @@ The solution should embrace security and agility in the software development lif
 By the end of the hackpod, we want you to:
 1. Use branches and commit your code. If you've unfinished work, that's ok! The repos themselves will stay around after the hackpod. The AWS Credentials that you will receive will be valid for 72 hours.
 2. Document your progress in the [Program Equity Amplify Repo Issues](https://github.com/ProgramEquity/amplify/issues).
-3. Fill out the survey.
+3. Fill out the [survey](https://forms.gle/3vKuGjHqdswCYhAv5).
 
 ## Find your group
 
