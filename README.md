@@ -147,31 +147,42 @@ These tasks are meant to be done sequentially. Group 1 needs to finish before Gr
 - [ ] Add teammates to repo
 - [ ] [Bootstrap AWS Environment](https://github.com/abirismyname/actions-hackpod-template#bootstrap)
 - [ ] Add remaining Secrets and Variables
+  - [ ] Secret: ROLE_TO_ASSUME 
+  - [ ] Variable: APP_NAME
+  - [ ] Variable: AWS_REGION (hardcode to `us-east-1`)
+  - [ ] Variable: ECR_REPO_NAME (From [Bootstrap command output](https://github.com/abirismyname/amplify-ecs-fargate#bootstrap))
+  - [ ] Variable: ECS_CLUSTER_NAME 
+  - [ ] Variable: VPC_STACK_NAME (From [Bootstrap command output](https://github.com/abirismyname/amplify-ecs-fargate#bootstrap))
 - [ ] Validate configuration
-- [ ] Review and merge PR’s
+- [ ] Review and merge PR’s from other groups
 Bonus Points
 - [ ] Add branch protection rules
 
 ### Group 2 CI
-- [ ] Configure AWS using OIDC, check out the action: aws-actions/configure-aws-credentials
+- [ ] Configure AWS using OIDC, check out the action: [aws-actions/configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials)
 - [ ] Checkout Amplify Repo (we do this so that you can start to build the Amplify app from this repo)
 - [ ] Build the Amplify app
-- [ ] Create a docker image
+- [ ] Create a docker image (Use this [Dockerfile](https://github.com/abirismyname/actions-hackpod-template/blob/main/Dockerfile) )
 - [ ] Upload to ECR
 Bonus Points
-- [ ] Lint the CloudFormation template (templates/), check out the action: scottbrenner/cfn-lint-action
-- [ ] Perform static analysis against the CloudFormation template, check out the action: stelligent/cfn_nag@master
-- [ ] Scan the docker image in ECR, check out the action: alexjurkiewicz/ecr-scan-image for inspiration
+- [ ] Lint the CloudFormation template (templates/), check out the action: [scottbrenner/cfn-lint-action](https://github.com/scottbrenner/cfn-lint-action)
+- [ ] Perform static analysis against the CloudFormation template, check out the action: [stelligent/cfn_nag@master](https://github.com/stelligent/cfn_nag)
+- [ ] Scan the docker image in ECR, check out the action: [alexjurkiewicz/ecr-scan-image](https://github.com/alexjurkiewicz/ecr-scan-image) for inspiration
 - [ ] Create build summary output from scans
 
+[Completed CI Workflow Example](https://github.com/abirismyname/amplify-ecs-fargate/blob/main/.github/workflows/ci.yml)
+
 ### Group 3 CD
-- [ ] Configure AWS using OIDC, check out the action: check out the action: aws-actions/configure-aws-credentials
-- [ ] Deploy the ECS cluster using the pre-build template (templates/cluster), check this action for inspiration: aws-actions/aws-cloudformation-github-deploy
-- [ ] Update ECS task definition with the new image id / tag, check this action for idea: aws-actions/amazon-ecs-render-task-definition
-- [ ] Deploy the new ECS task based on the new ECS task definition, check this action for idea: aws-actions/amazon-ecs-deploy-task-definition
+- [ ] Configure AWS using OIDC, check out the [aws-actions/configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials) action. This should mirror what Group 2 did.
+- [ ] Deploy the ECS cluster using the pre-build template (templates/cluster), check this action for inspiration: [aws-actions/aws-cloudformation-github-deploy](https://github.com/aws-actions/aws-cloudformation-github-deploy)
+- [ ] Update ECS task definition with the new image id / tag, check this action for idea: [aws-actions/amazon-ecs-render-task-definition](https://github.com/aws-actions/amazon-ecs-render-task-definition)
+- [ ] Deploy the new ECS task based on the new ECS task definition, check this action for idea: [aws-actions/amazon-ecs-deploy-task-definition](https://github.com/aws-actions/amazon-ecs-deploy-task-definition)
 - [ ] Get the Amplify app URL via ECS service elastic load balancer via AWS UI
 - [ ] Go to the URL in your browser (Should be something like [http://ampli-publi-1qwmkqsu76tvx-1285928569.us-east-1.elb.amazonaws.com/](http://ampli-publi-1qwmkqsu76tvx-1285928569.us-east-1.elb.amazonaws.com/))
+
 Bonus Points
 - [ ] Create summary output in GitHub Action that shows the URL
 - [ ] Deploy additional guardrails, such as [AWS Security Hub](https://aws.amazon.com/security-hub/) and the [conformance pack](https://docs.aws.amazon.com/config/latest/developerguide/conformancepack-sample-templates.html) 
 - [ ] Deploy web application firewalls and [AWS Managed rules](https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups.html)
+
+[Completed CD Workflow Example](https://github.com/abirismyname/amplify-ecs-fargate/blob/main/.github/workflows/cd.yml)
